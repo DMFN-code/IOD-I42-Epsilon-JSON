@@ -1,0 +1,18 @@
+﻿<project name="JSON tools API" default="build">
+	<path id="json.cp">
+	  <pathelement location="json-202209924.jar"/>
+	</path>
+
+	<target name="build">
+		<echo message="Building project ${ant.project.name}." />
+		<mkdir dir="bin" />
+		<javac srcdir="src" destdir="bin" includeantruntime="false" encoding="utf-8" classpathref="json.cp" />
+		<jar destfile="json_tools_api.jar">
+		    <fileset dir="bin"/>
+  		</jar>
+		<echo message="Done!" />
+	</target>
+	<target name="doc" depends="build" description="generate documentation">
+		<javadoc sourcepath="." destdir="/doc/"/>
+	</target>
+</project>

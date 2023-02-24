@@ -1,0 +1,201 @@
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
+}
+@keyframes effect-01-animation {
+    from { 
+      transform: rotate(-15deg) scale(0)  translateY(-50%); 
+    }
+    40% { 
+      opacity: 1; 
+    }
+    to { 
+      transform: rotate(-30deg) scale(5.5)  translateY(-50%); 
+      opacity: 0;
+    }
+  }
+  
+  @keyframes effect-02-animation {
+    from { 
+      transform: rotate(10deg) scale(0)  translateY(-50%); 
+    }
+    40% { 
+      opacity: 1; 
+    }
+    to { 
+      transform: rotate(30deg) scale(5)  translateY(-50%); 
+      opacity: 0; 
+    }
+  }
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+
+
+.active{
+    border: 5px solid transparent;
+    border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    animation: 0.5s rotate linear infinite;
+}
+html{
+    padding: 10px;
+    overflow: hidden;
+    background-color: #f2fdf6;
+    font-family: "Comic Sans MS", "Comic Sans", cursive,-apple-system,system-ui,Roboto,sans-serif;
+}
+textarea{
+    resize: none;
+    background-color: rgba(255,255,255,0.75);
+    border: none;
+    margin-top: 10px;
+}
+#top_panel{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 15vh;
+}
+#top_panel > div{
+    display: flex;
+    width: 14vw;
+    text-align: center;
+    padding: 5px 0;
+    align-items: center;
+    justify-content: center;
+}
+#top_panel span, .label{
+    background: none;
+    font-size: 2em;
+    color:#c2fbd7;
+    text-shadow: 0 0 3px black;
+}
+.label{
+    font-size: 1.5em;
+}
+#top_panel span::selection{
+    background: none;
+}
+#top_panel span:hover{
+    color:cyan;
+    cursor: pointer;
+}
+#top_panel span:active{
+    color:red;
+    cursor: pointer;
+}
+#io_panel{
+    justify-content: space-between;
+    width: 100vw;
+    height: 65vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#in_panel,#out_panel{
+    display: flex;
+    width: 35vw;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+#btn_container{
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#in_panel textarea{
+    width: 100%;
+    height: 25vh;
+}
+
+/* quickfix ;-) */
+#out_panel{
+    transform: translateX(-25px);
+}
+
+#out_panel textarea{
+    width: 100%;
+    height: 63.5vh;
+}
+
+
+#btn{
+    z-index: 2;
+    min-width: 150px;
+    min-height: 50px;
+    text-align: center;
+    background-color: #c2fbd7;
+    border-radius: 20px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: white;
+    cursor: pointer;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    animation: .8s;
+}
+#btn:active{
+    background-color: #9bd1af;
+}
+#btn > span{
+    font-size: 1.3rem;
+    line-height: 50px;
+    text-shadow: 0px 0px 3px black;
+}
+
+
+
+
+
+
+#btn.is_active:before,#btn.is_active:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    transform: scale(0) translateY(-50%);
+    color: pink;
+    border: 1px solid transparent;
+    box-shadow: -.8em 0 0 -2px, .8em 0 0 -2px, 0 -.8em 0 -2px, 0 .8em 0 -2px, -.6em -.6em 0 -2px, -.6em .6em 0 -2px, .6em -.6em 0 -2px, .6em .6em 0 -2px;
+}   
+#btn.is_active:before{
+    animation: effect-01-animation .8s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+#btn.is_active:after {
+    animation: effect-02-animation .6s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  }
+
+
+
+#footer{
+    position: fixed;
+    bottom:0;
+    height: 25px;
+
+}
+#footer > h1{
+    background: -webkit-linear-gradient(#c2fbd7, #9bd1af);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* -webkit-text-stroke: 0.2px black; */
+    -webkit-text-stroke: 1px rgba(0,0,0,0.2);
+    height: 25px;
+}
